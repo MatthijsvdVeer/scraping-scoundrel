@@ -19,7 +19,7 @@ var secretsOfficerPrincipalIds = [
 module keyVaultSecretsOfficers 'modules/key-vault-secrets-officer.bicep' = {
   name: 'key-vault-secrets-officer'
   params: {
-    keyVaultName: keyVault.name
+    keyVaultName: keyVault.outputs.name
     principalIds: secretsOfficerPrincipalIds
   }
 }
