@@ -35,7 +35,7 @@ module storageAccount 'modules/storage-account.bicep' = {
 module mappingTable 'modules/table-storage.bicep' = {
   name: 'items-table'
   params: {
-    storageAccountName: storageAccount.name
+    storageAccountName: storageAccount.outputs.name
     tableName: 'items'
   }
 }
@@ -62,7 +62,7 @@ module functions 'modules/function.bicep' = {
   params: {
     hostingPlanName: hostingPlan.outputs.planName
     functionFullName: functionsName
-    storageAccountName: storageAccount.name
+    storageAccountName: storageAccount.outputs.name
     applicationInsightsInstrumentationKey: appInsights.outputs.instrumentationKey
     location: location
   }
