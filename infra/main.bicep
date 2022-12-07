@@ -77,6 +77,6 @@ module tableDataContributors 'modules/table-storage-data-contributor.bicep' = {
   name: 'table-storage-data-contributor'
   params: {
     principalIds: tableDataContributorPrincipalIds
-    storageAccountName: storageAccount.name
+    storageAccountName: storageAccount.outputs.name
   }
 }
