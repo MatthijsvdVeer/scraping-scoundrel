@@ -16,3 +16,5 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-09-01' = {
     name: 'default'
   }
 }
+
+output name string = storageAccount.name

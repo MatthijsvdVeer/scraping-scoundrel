@@ -1,0 +1,1 @@
+[![🚀 Deploy](https://github.com/MatthijsvdVeer/scraping-scoundrel/actions/workflows/deploy.yml/badge.svg)](https://github.com/MatthijsvdVeer/scraping-scoundrel/actions/workflows/deploy.yml)
