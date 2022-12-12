@@ -80,3 +80,6 @@ module tableDataContributors 'modules/table-storage-data-contributor.bicep' = {
     storageAccountName: storageAccount.outputs.name
   }
 }
+
+output functionName string = functions.outputs.functionName
+output tableEndpoint string = storageAccount.outputs.tableEndpoint
