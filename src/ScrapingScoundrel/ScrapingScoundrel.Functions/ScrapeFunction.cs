@@ -112,7 +112,7 @@ namespace ScrapingScoundrel.Functions
 
         private async Task<JsonNode> GetJsonNode(int page, ILogger logger)
         {
-            var requestUri = $"{this.endpoint}?query=Utrecht&range=5&page={page}";
+            var requestUri = $"{this.endpoint}?query=Utrecht&range=15&page={page}";
             logger.LogInformation("Calling {0}", requestUri);
             var responseMessage = await this.httpClient.GetAsync(requestUri);
             var stream = await responseMessage.Content.ReadAsStreamAsync();
