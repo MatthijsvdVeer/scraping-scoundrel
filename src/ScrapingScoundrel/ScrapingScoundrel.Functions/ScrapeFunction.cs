@@ -23,6 +23,8 @@ namespace ScrapingScoundrel.Functions
         private readonly string endpoint;
         private readonly string toEmail;
         private readonly string fromEmail;
+        private readonly int range;
+        private readonly int price;
 
         public ScrapeFunction(TableClient tableClient, HttpClient httpClient, IConfiguration configuration)
         {
@@ -31,6 +33,8 @@ namespace ScrapingScoundrel.Functions
             this.endpoint = configuration["ScrapeEndpoint"];
             this.toEmail = configuration["ToEmail"];
             this.fromEmail = configuration["FromEmail"];
+            this.range = configuration.GetValue<int>("Range");
+            this.range = configuration.GetValue<int>("Price");
         }
 
         [FunctionName("ScrapeFunction")]
@@ -112,7 +116,7 @@ namespace ScrapingScoundrel.Functions
 
         private async Task<JsonNode> GetJsonNode(int page, ILogger logger)
         {
-            var requestUri = $"{this.endpoint}?query=Utrecht&range=15&page={page}";
+            var requestUri = $"{this.endpoint}?query=Utrecht&range={this.range}&page={page}&price={this.price}";
             logger.LogInformation("Calling {0}", requestUri);
             var responseMessage = await this.httpClient.GetAsync(requestUri);
             var stream = await responseMessage.Content.ReadAsStreamAsync();
