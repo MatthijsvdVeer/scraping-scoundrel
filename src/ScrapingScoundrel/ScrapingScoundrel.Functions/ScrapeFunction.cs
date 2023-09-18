@@ -21,17 +21,19 @@ namespace ScrapingScoundrel.Functions
         private readonly TableClient tableClient;
         private readonly HttpClient httpClient;
         private readonly string endpoint;
-        private readonly string toEmail;
         private readonly string fromEmail;
         private readonly int range;
         private readonly int price;
+
+        // Comma separated list of emails.
+        private readonly string toEmails;
 
         public ScrapeFunction(TableClient tableClient, HttpClient httpClient, IConfiguration configuration)
         {
             this.tableClient = tableClient;
             this.httpClient = httpClient;
             this.endpoint = configuration["ScrapeEndpoint"];
-            this.toEmail = configuration["ToEmail"];
+            this.toEmails = configuration["ToEmail"];
             this.fromEmail = configuration["FromEmail"];
             this.range = configuration.GetValue<int>("Range");
             this.price = configuration.GetValue<int>("Price");
@@ -132,7 +134,9 @@ namespace ScrapingScoundrel.Functions
                 Subject = $"New entry found: {projectProperty.Name}",
                 HtmlContent = builder.ToString()
             };
-            sendGridMessage.AddTo(this.toEmail);
+
+            // Send message to all emails.
+            sendGridMessage.AddTos(this.toEmails.Split(',').Select(s => new EmailAddress(s)).ToList());
             return sendGridMessage;
         }
     }
