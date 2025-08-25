@@ -24,6 +24,7 @@ namespace ScrapingScoundrel.Functions
         private readonly string fromEmail;
         private readonly int range;
         private readonly int price;
+        private readonly string city;
 
         // Comma separated list of emails.
         private readonly string toEmails;
