@@ -53,7 +53,7 @@ jobs:
         dotnet publish ./src/ScrapingScoundrel/ScrapingScoundrel.sln --configuration Release
         Compress-Archive -Path ./src/ScrapingScoundrel/ScrapingScoundrel.Functions/bin/Release/net6.0/publish/* -DestinationPath ${{ env.ARTIFACT_DIR }}/ScrapingScoundrel.Functions.zip
     - name: ⬆️ Upload Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4.6.2
       with:
         name: artifacts
         path: ${{ env.ARTIFACT_DIR }}
@@ -63,7 +63,7 @@ jobs:
     needs: [build-code, deploy-infra]
     steps:
     - name: ⬇️ Download artifacts
-      uses: actions/download-artifact@v4.1.7
+      uses: actions/download-artifact@v4.3.0
       with:
         name: artifacts
 
