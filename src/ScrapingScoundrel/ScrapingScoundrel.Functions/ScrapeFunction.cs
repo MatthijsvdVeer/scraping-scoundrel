@@ -37,6 +37,7 @@ namespace ScrapingScoundrel.Functions
             this.fromEmail = configuration["FromEmail"];
             this.range = configuration.GetValue<int>("Range");
             this.price = configuration.GetValue<int>("Price");
+            this.city = configuration.GetValue<int>("City");
         }
 
         [FunctionName("ScrapeFunction")]
@@ -118,7 +119,7 @@ namespace ScrapingScoundrel.Functions
 
         private async Task<JsonNode> GetJsonNode(int page, ILogger logger)
         {
-            var requestUri = $"{this.endpoint}?query=Utrecht&range={this.range}&page={page}&price={this.price}";
+            var requestUri = $"{this.endpoint}?query={this.city}&range={this.range}&page={page}&price={this.price}";
             logger.LogInformation("Calling {0}", requestUri);
             var responseMessage = await this.httpClient.GetAsync(requestUri);
             var stream = await responseMessage.Content.ReadAsStreamAsync();

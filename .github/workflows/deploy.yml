@@ -87,4 +87,5 @@ jobs:
           "FromEmail=${{ secrets.FROM_EMAIL }}" `
           "ToEmail=${{ secrets.TO_EMAIL }}" `
           "Range=${{ vars.RANGE }}" `
-          "Price=${{ vars.PRICE }}"
+          "Price=${{ vars.PRICE }}" `
+          "City=${{ vars.CITY }}"
