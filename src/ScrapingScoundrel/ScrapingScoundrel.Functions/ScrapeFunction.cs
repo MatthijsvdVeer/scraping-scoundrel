@@ -38,7 +38,7 @@ namespace ScrapingScoundrel.Functions
             this.fromEmail = configuration["FromEmail"];
             this.range = configuration.GetValue<int>("Range");
             this.price = configuration.GetValue<int>("Price");
-            this.city = configuration.GetValue<int>("City");
+            this.city = configuration.GetValue<string>("City");
         }
 
         [FunctionName("ScrapeFunction")]
